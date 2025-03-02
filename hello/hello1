@@ -1,0 +1,28 @@
+def convert_gb_to_units(gb):
+    # 定义单位换算
+    GB_TO_MB = 1024
+    MB_TO_KB = 1024
+    KB_TO_B = 1024
+
+    # 四舍五入 GB 到 5 位小数
+    gb_rounded = round(gb, 5)
+
+    # 计算 MB、KB、B
+    total_mb = gb * GB_TO_MB  # 总 MB 数
+    gb_part = int(gb)  # 整数 GB
+    remaining_mb = (gb - gb_part) * GB_TO_MB  # 计算剩余 MB
+    mb_part = int(remaining_mb)  # 整数 MB
+
+    remaining_kb = (remaining_mb - mb_part) * MB_TO_KB  # 计算剩余 KB
+    kb_part = int(remaining_kb)  # 整数 KB
+
+    remaining_b = (remaining_kb - kb_part) * KB_TO_B  # 计算剩余 B
+    b_part = int(round(remaining_b))  # 最后 B 进行四舍五入
+
+    # 格式化输出
+    return f"{gb_rounded} GB = {gb_part} GB, {mb_part} MB, {kb_part} KB, {b_part} B"
+
+# 用户输入
+gb_input = float(input("请输入 GB 数值: "))
+result = convert_gb_to_units(gb_input)
+print(result)
